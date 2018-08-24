@@ -19,7 +19,7 @@ function getEvents(req, res, next) {
 function postEvent(req, res, next){
   const eventDetails = Object.assign({}, {_id : new ObjectId(), title : req.body.title, description: req.body.description, place : req.body.place, startTime: req.body.startTime, endTime: req.body.endTime});
   query.saveToDB(collectionName, eventDetails)
-  .then((result)=>{ return res.status(201).json({title : req.body.title, description:    req.body.description, place : req.body.place, startTime: req.body.startTime, endTime: req.body.endTime}); })
+  .then((result)=>{ return res.status(201).json({title : req.body.title, description: req.body.description, place : req.body.place, startTime: req.body.startTime, endTime: req.body.endTime}); })
   .catch((err)=>{ return next(createError(err.status || 500, err.message || 'Internal server errror')); });
 }
 
