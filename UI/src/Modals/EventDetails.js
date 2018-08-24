@@ -16,7 +16,7 @@ export default class EventDetails extends React.Component {
           <Modal.Body >
             {get(eventDetails, 'description') && <p><ControlLabel>Description : {get(eventDetails, 'description')}</ControlLabel></p>}
             <p><ControlLabel>Event starts : {moment(get(eventDetails, 'start')).format('MMMM Do YYYY, h:mm:ss a')}</ControlLabel></p>
-            <ControlLabel>Event ends: {moment(get(eventDetails, 'end')).format('MMMM Do YYYY, h:mm:ss a')}</ControlLabel>
+            <p><ControlLabel>Event ends: {moment(get(eventDetails, 'end')).format('MMMM Do YYYY, h:mm:ss a')}</ControlLabel></p>
             {get(eventDetails, 'place') && <p><ControlLabel>Place: {get(eventDetails, 'place')}</ControlLabel></p>}
           </Modal.Body>
           <Modal.Footer>
