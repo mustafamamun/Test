@@ -1,0 +1,9 @@
+ # exclude everything except necessary file
+/backend/node_modules
+/UI/node_modules
+/backend/npm-debug.log*
+/backend/yarn-debug.log*
+/backend/yarn-error.log*
+/UI/npm-debug.log*
+/UI/yarn-debug.log*
+/UI/yarn-error.log*

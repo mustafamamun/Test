@@ -1,0 +1,116 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Hello World App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /events:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: events
+    get:
+      description: Get all the events from database
+      # used as the method name of the controller
+      operationId: getEvents
+      tags: ["Events"]
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/EventCollection"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      description: Post events to database
+      # used as the method name of the controller
+      operationId: postEvent
+      tags: ["Events"]
+      parameters:
+        - name: eventDetails
+          in: body
+          description: Details of the event to be added
+          required: true
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Event"
+      responses:
+        "201":
+          description: Success, Event successfully added to colelction
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        "500":
+          description: Internal server error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        "default":
+          description: Undefined error situation.
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  EventCollection:
+    required:
+      - count
+      - Events
+    properties:
+      count:
+        type: integer
+      Events:
+        type: array
+        items:
+          $ref: "#/definitions/Event"
+  Event:
+    required:
+      - title
+      - startTime
+      - endTime
+    properties:
+      title: 
+        type: string
+      description:
+        type: string
+      place:
+        type: string
+      startTime:
+        type: string
+      endTime: 
+        type: string
+  SuccessResponse:
+    required:
+      - status
+      - message
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+      - status
+    properties:
+      message:
+        type: string
+      status:
+        type: integer

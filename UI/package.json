@@ -1,0 +1,19 @@
+{
+  "name": "booking-ui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "moment": "^2.22.1",
+    "react": "^16.3.2",
+    "react-big-calendar": "^0.19.2",
+    "react-bootstrap": "^0.32.3",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
